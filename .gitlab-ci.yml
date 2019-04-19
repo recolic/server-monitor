@@ -1,0 +1,77 @@
+image: recolic/rserver-monitor
+
+stages:
+  - test
+
+rproxy:
+  stage: test
+  script: "/do.bash rproxy"
+
+drive:
+  stage: test
+  script: "/do.bash drive"
+
+ss-tw:
+  stage: test
+  script: "/do.bash ss-tw"
+
+ss-us1:
+  stage: test
+  script: "/do.bash ss-us1"
+
+ss-us5:
+  stage: test
+  script: "/do.bash ss-us5"
+
+ss-us6:
+  stage: test
+  script: "/do.bash ss-us6"
+
+ovpn-tw:
+  stage: test
+  script: "/do.bash ovpn-tw"
+
+www:
+  stage: test
+  script: "/do.bash www"
+
+mail:
+  stage: test
+  script: "/do.bash mail"
+
+tm:
+  stage: test
+  script: "/do.bash tm"
+
+git:
+  stage: test
+  script: "/do.bash git"
+
+zhixiang:
+  stage: test
+  script: "/do.bash zhixiang"
+
+mc:
+  stage: test
+  script: "/do.bash mc"
+
+push-httpdb-agent:
+  stage: test
+  script: "/do.bash push-httpdb-agent"
+
+ddns-wuhan:
+  stage: test
+  script: "/do.bash ddns-wuhan"
+
+ddns-us:
+  stage: test
+  script: "/do.bash ddns-us"
+
+dl:
+  stage: test
+  script: "/do.bash dl"
+
+all:
+  stage: test
+  script: "/do.bash all"
+
