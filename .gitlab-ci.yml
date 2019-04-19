@@ -5,88 +5,105 @@ stages:
 
 rproxy:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash rproxy"
 
 drive:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash drive"
 
 ss-tw:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash ss-tw"
 
 ss-us1:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash ss-us1"
 
 ss-us5:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash ss-us5"
 
 ss-us6:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash ss-us6"
 
 ovpn-tw:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash ovpn-tw"
 
 www:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash www"
 
 mail:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash mail"
 
 tm:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash tm"
 
 git:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash git"
 
 zhixiang:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash zhixiang"
 
 mc:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash mc"
   allow_failure: true
 
 push-httpdb-agent:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash push-httpdb-agent"
   allow_failure: true
 
 ddns-wuhan:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash ddns-wuhan"
 
 ddns-us:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash ddns-us"
 
 dl:
   stage: test
-  only: schedules
+  only: 
+    - schedules
   script: "/do.bash dl"
 
