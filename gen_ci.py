@@ -10,7 +10,7 @@ stages:
   - test
 ''')
 for op in ops:
-    print('{}:\n  stage: test\n  script: "/do.bash {}"'.format(op, op))
+    print('{}:\n  stage: test\n  only: schedules\n  script: "/do.bash {}"'.format(op, op))
     if op in allow_fail:
         print('  allow_failure: true')
     print()
