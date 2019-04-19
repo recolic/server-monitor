@@ -71,7 +71,3 @@ dl:
   stage: test
   script: "/do.bash dl"
 
-all:
-  stage: test
-  script: "/do.bash all"
-
