@@ -54,10 +54,12 @@ zhixiang:
 mc:
   stage: test
   script: "/do.bash mc"
+  allow_failure: true
 
 push-httpdb-agent:
   stage: test
   script: "/do.bash push-httpdb-agent"
+  allow_failure: true
 
 ddns-wuhan:
   stage: test
