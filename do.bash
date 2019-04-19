@@ -89,6 +89,8 @@ function do_test () {
             curl -s http://git.recolic.net/ -L | grep 'users/sign_in' || return $?
             ;;
         zhixiang )
+            grep 'api.anjie-elec.cn' /etc/hosts || echo '123.206.117.183 api.anjie-elec.cn' >> /etc/hosts
+            [[ $? != 0 ]] && echo 'Failed to edit hosts file! Unable to perform this test.' > /dev/fd/2 && return 0
             curl -k -X POST -s 'https://api.anjie-elec.cn/api/usewater/Add?accessToken=FUCKYOU' | grep '104871845A503324' || return $?
             ;;
         mc )
