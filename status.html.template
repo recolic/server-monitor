@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<!-- Recolic: pulled this webpage from https://www.githubstatus.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->
+
+    
+
+
+    <title>Recolic Hosting Status</title>
+    <meta name="description" content="Welcome to Recolic&#39;s home for real-time and historical data on system performance.">
+
+    <!-- Mobile viewport optimization h5bp.com/ad -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <!-- Time this page was rendered - http://purl.org/dc/terms/issued -->
+    <meta name="issued" content="1557829204">
+
+    <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    <meta http-equiv="cleartype" content="on">
+
+    <!-- Le fonts -->
+<style>
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-f0b2f7c12b6b87c65c02d3c1738047ea67a7607fd767056d8a2964cc6a2393f7.eot?host=www.githubstatus.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-f0b2f7c12b6b87c65c02d3c1738047ea67a7607fd767056d8a2964cc6a2393f7.eot?host=www.githubstatus.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-e642ffe82005c6208632538a557e7f5dccb835c0303b06f17f55ccf567907241.woff?host=www.githubstatus.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaLight-0f094da9b301d03292f97db5544142a16f9f2ddf50af91d44753d9310c194c5f.ttf?host=www.githubstatus.com') format('truetype');
+    font-weight:300;
+    font-style:normal;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-366d17769d864aa72f27defaddf591e460a1de4984bb24dacea57a9fc1d14878.eot?host=www.githubstatus.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-366d17769d864aa72f27defaddf591e460a1de4984bb24dacea57a9fc1d14878.eot?host=www.githubstatus.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-2ee4c449a9ed716f1d88207bd1094e21b69e2818b5cd36b28ad809dc1924ec54.woff?host=www.githubstatus.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegular-a40a469edbd27b65b845b8000d47445a17def8ba677f4eb836ad1808f7495173.ttf?host=www.githubstatus.com') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-0bf83a850b45e4ccda15bd04691e3c47ae84fec3588363b53618bd275a98cbb7.eot?host=www.githubstatus.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-0bf83a850b45e4ccda15bd04691e3c47ae84fec3588363b53618bd275a98cbb7.eot?host=www.githubstatus.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-0c394ec7a111aa7928ea470ec0a67c44ebdaa0f93d1c3341abb69656cc26cbdd.woff?host=www.githubstatus.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaRegularIt-9e43859f8015a4d47d9eaf7bafe8d1e26e3298795ce1f4cdb0be0479b8a4605e.ttf?host=www.githubstatus.com') format('truetype');
+    font-weight:400;
+    font-style:italic;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-09566917307251d22021a3f91fc646f3e45f8d095209bcd2cded8a1979f06e54.eot?host=www.githubstatus.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-09566917307251d22021a3f91fc646f3e45f8d095209bcd2cded8a1979f06e54.eot?host=www.githubstatus.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-86724fb2152613d735ba47c3f47a9ad2424b898bea4bece213dacee40344f966.woff?host=www.githubstatus.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaSemibold-cf3e4eb7fbdf6fb83e526cc2a0141e55b01097e6e1abfd4cbdc3eda75d183f74.ttf?host=www.githubstatus.com') format('truetype');
+    font-weight:500;
+    font-style:normal;
+  }
+   
+  @font-face {
+    font-family: 'proxima-nova';
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-622ea489d20e12e691663f83217105e957e2d3d09703707d40155a29c06cc9d9.eot?host=www.githubstatus.com');
+    src: url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-622ea489d20e12e691663f83217105e957e2d3d09703707d40155a29c06cc9d9.eot?host=www.githubstatus.com#iefix') format('embedded-opentype'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-c8dc577ff7f76d2fc199843e38c04bb2e9fd15889421358d966a9f846c2ed1cd.woff?host=www.githubstatus.com') format('woff'),
+         url('https://dka575ofm4ao0.cloudfront.net/assets/ProximaNovaBold-27177fe9242acbe089276ee587feef781446667ffe9b6fdc5b7fe21ad73e12f3.ttf?host=www.githubstatus.com') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+</style>
+
+
+      <link rel="shortcut icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon-success.ico">
+
+    <link rel="shortcut icon" href="https://assets-cdn.github.com/favicon-success.ico">
+
+    <link rel="alternate" type="application/atom+xml" href="https://www.githubstatus.com/history.atom" title="GitHub Status History - Atom Feed">
+    <link rel="alternate" type="application/rss+xml" href="https://www.githubstatus.com/history.rss" title="GitHub Status History - RSS Feed">
+
+      <!-- Canonical Link to ensure that only the custom domain is indexed when present -->
+      <link rel="canonical" href="https://www.githubstatus.com/">
+
+    <meta name="_globalsign-domain-verification" content="y_VzfckMy4iePo5oDJNivyYIjh8LffYa4jzUndm_bZ">
+
+
+    <link rel="alternate" type="application/atom+xml" title="ATOM" href="https://www.githubstatus.com/history.atom">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" media="screen" href="file:///home/recolic/tmp/GitHubStatus_files/0.87897096de04b7630b93.css">
+    <link rel="stylesheet" media="all" href="file:///home/recolic/tmp/GitHubStatus_files/status_manifest-72ddb62f780d9c26a0a548d46d01029cba9f1ecc5cf7d1a57c44c2aff304b19c.css">
+
+      <script src="file:///home/recolic/tmp/GitHubStatus_files/jquery.min.js"></script>
+
+    <script>
+      window.pageColorData = {"blue":"#0366d6","border":"#e1e4e8","body_background":"#ffffff","font":"#24292e","graph":"#0366d6","green":"#28a745","light_font":"#6a737d","link":"#0366d6","orange":"#e36209","red":"#dc3545","yellow":"#dbab09"};
+    </script>
+    <style>
+
+
+
+
+  /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */
+  body,
+  .layout-content.status.status-api .section .example-container .example-opener .color-secondary,
+  .grouped-items-selector,
+  .layout-content.status.status-full-history .history-nav a.current {
+    background-color:#ffffff;
+  }
+
+
+
+
+
+  /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */
+  body.status,
+  .color-primary,
+  .color-primary:hover,
+  .layout-content.status-index .status-day .update-title.impact-none a,
+  .layout-content.status-index .status-day .update-title.impact-none a:hover,
+  .layout-content.status-index .timeframes-container .timeframe.active,
+  .layout-content.status-full-history .month .incident-container .impact-none,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-none a,
+  .incident-history .impact-none,
+  .layout-content.status .grouped-items-selector.inline .grouped-item.active,
+  .layout-content.status.status-full-history .history-nav a.current,
+  .layout-content.status.status-full-history .history-nav a:not(.current):hover {
+    color:#24292e;
+  }
+
+  .layout-content.status.status-index .components-statuses .component-container .name {
+    color:#24292e;
+    color:rgba(36,41,46,.8);
+  }
+
+
+
+
+
+
+  /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */
+  small,
+  .layout-content.status .table-row .date,
+  .color-secondary,
+  .layout-content.status .grouped-items-selector.inline .grouped-item,
+  .layout-content.status.status-full-history .history-footer .pagination a.disabled,
+  .layout-content.status.status-full-history .history-nav a {
+    color:#6a737d;
+  }
+
+
+
+
+
+
+
+
+
+  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */
+  body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-display table {
+    border-color:#e1e4e8;
+  }
+
+  .markdown-display table td {
+    border-top-color:#e1e4e8;
+  }
+
+  .markdown-display table td + td, .markdown-display table th + th {
+    border-left-color:#e1e4e8;
+  }
+
+
+
+
+
+
+  /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */
+  .layout-content.status.status-index .status-day .update-title.impact-critical a,
+  .layout-content.status.status-index .status-day .update-title.impact-critical a:hover,
+  .layout-content.status.status-index .page-status.status-critical,
+  .layout-content.status.status-index .unresolved-incident.impact-critical .incident-title,
+  .flat-button.background-red {
+    background-color:#dc3545;
+  }
+  .layout-content.status-index .components-statuses .component-container.status-red:after,
+  .layout-content.status-full-history .month .incident-container .impact-critical,
+  .layout-content.status-incident .incident-name.impact-critical,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-critical a,
+  .status-red .icon-indicator,
+  .incident-history .impact-critical,
+  .components-container .component-inner-container.status-red .component-status,
+  .components-container .component-inner-container.status-red .icon-indicator {
+    color:#dc3545;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-critical .updates {
+    border-color:#dc3545;
+  }
+
+
+
+
+
+
+  /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */
+  .layout-content.status.status-index .status-day .update-title.impact-major a,
+  .layout-content.status.status-index .status-day .update-title.impact-major a:hover,
+  .layout-content.status.status-index .page-status.status-major,
+  .layout-content.status.status-index .unresolved-incident.impact-major .incident-title {
+    background-color:#e36209;
+  }
+  .layout-content.status-index .components-statuses .component-container.status-orange:after,
+  .layout-content.status-full-history .month .incident-container .impact-major,
+  .layout-content.status-incident .incident-name.impact-major,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-major a,
+  .status-orange .icon-indicator,
+  .incident-history .impact-major,
+  .components-container .component-inner-container.status-orange .component-status,
+  .components-container .component-inner-container.status-orange .icon-indicator {
+    color:#e36209;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-major .updates {
+    border-color:#e36209;
+  }
+
+
+
+
+
+
+
+/* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */
+  .layout-content.status.status-index .status-day .update-title.impact-minor a,
+  .layout-content.status.status-index .status-day .update-title.impact-minor a:hover,
+  .layout-content.status.status-index .page-status.status-minor,
+  .layout-content.status.status-index .unresolved-incident.impact-minor .incident-title,
+  .layout-content.status.status-index .scheduled-incidents-container .tab {
+    background-color:#dbab09;
+  }
+  .layout-content.status-index .components-statuses .component-container.status-yellow:after,
+  .layout-content.status-full-history .month .incident-container .impact-minor,
+  .layout-content.status-incident .incident-name.impact-minor,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-minor a,
+  .status-yellow .icon-indicator,
+  .incident-history .impact-minor,
+  .components-container .component-inner-container.status-yellow .component-status,
+  .components-container .component-inner-container.status-yellow .icon-indicator,
+  .layout-content.status.manage-subscriptions .confirmation-infobox .fa {
+    color:#dbab09;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-minor .updates,
+  .layout-content.status.status-index .scheduled-incidents-container {
+    border-color:#dbab09;
+  }
+
+
+
+
+
+
+/* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */
+  .layout-content.status.status-index .status-day .update-title.impact-maintenance a,
+  .layout-content.status.status-index .status-day .update-title.impact-maintenance a:hover,
+  .layout-content.status.status-index .page-status.status-maintenance,
+  .layout-content.status.status-index .unresolved-incident.impact-maintenance .incident-title,
+  .layout-content.status.status-index .scheduled-incidents-container .tab {
+    background-color:#0366d6;
+  }
+
+  .layout-content.status-index .components-statuses .component-container.status-blue:after,
+  .layout-content.status-full-history .month .incident-container .impact-maintenance,
+  .layout-content.status-incident .incident-name.impact-maintenance,
+  .layout-content.status.status-index .incidents-list .incident-title.impact-maintenance a,
+  .status-blue .icon-indicator,
+  .incident-history .impact-maintenance,
+  .components-container .component-inner-container.status-blue .component-status,
+  .components-container .component-inner-container.status-blue .icon-indicator {
+    color:#0366d6;
+  }
+
+  .layout-content.status.status-index .unresolved-incident.impact-maintenance .updates,
+  .layout-content.status.status-index .scheduled-incidents-container {
+    border-color:#0366d6;
+  }
+
+
+
+
+
+  /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */
+  .layout-content.status.status-index .page-status.status-none {
+    background-color:#28a745;
+  }
+  .layout-content.status-index .components-statuses .component-container.status-green:after,
+  .status-green .icon-indicator,
+  .components-container .component-inner-container.status-green .component-status,
+  .components-container .component-inner-container.status-green .icon-indicator {
+    color:#28a745;
+  }
+
+
+
+
+  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */  /* CSS LINK COLOR */
+  a,
+  a:hover,
+  .layout-content.status-index .page-footer span a:hover,
+  .layout-content.status-index .timeframes-container .timeframe:not(.active):hover,
+  .layout-content.status-incident .subheader a:hover {
+    color:#0366d6;
+  }
+  .flat-button,
+  .masthead .updates-dropdown-container .show-updates-dropdown,
+  .layout-content.status-full-history .show-filter.open  {
+    background-color:#0366d6;
+  }
+
+  /* CUSTOM COLOR OVERRIDES FOR UPTIME SHOWCASE */
+  .components-section .components-uptime-link {
+    color: #6a737d;
+  }
+
+  .layout-content.status .shared-partial.uptime-90-days-wrapper .legend .legend-item {
+    color: #6a737d;
+    opacity: 0.8;
+  }
+  .layout-content.status .shared-partial.uptime-90-days-wrapper .legend .legend-item.light {
+    color: #6a737d;
+    opacity: 0.5;
+  }
+  .layout-content.status .shared-partial.uptime-90-days-wrapper .legend .spacer {
+    background: #6a737d;
+    opacity: 0.3;
+  }
+</style>
+
+
+    <!-- custom css -->
+        <link rel="stylesheet" type="text/css" href="file:///home/recolic/tmp/GitHubStatus_files/external20190311-59-ij3qvc.css">
+
+
+    <!-- Le HTML5 shim -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- injection for static -->
+
+
+    
+  <script charset="utf-8" src="file:///home/recolic/tmp/GitHubStatus_files/button.dd024c345fc26f7c7a8d9938b67e5d3d.js"></script></head>
+
+
+  <body class="status index status-none" data-breakpoint-reached="true">
+
+    
+
+
+  <div class="layout-content status status-index starter">
+      <div class="custom-header-container">
+    
+    
+
+
+  
+
+
+  </div>
+
+
+    <div class="container">
+##begin all_ok
+        <div class="page-status status-none">
+          <span class="status font-large">
+            All Systems Operational
+          </span>
+          <span class="last-updated-stamp  font-small"></span>
+        </div>
+##end all_ok
+
+##label L_all_ok
+
+        <div class="components-section font-regular">
+    <div class="components-container one-column">
+          <div class="component-container border-color">
+            
+
+##begin tab
+          <div class="component-container border-color">
+            
+<!-- Recolic: var comment: available colors: green(OK) blue(Repairing) yellow(Warn) orange(Unknown) red(BOOM) -->
+<div data-component-id="kr09ddfgbfsf" class="component-inner-container status-##var tab_color## " data-component-status="operational" data-js-hook="">
+
+   <span class="name">
+##var tab_name##
+   </span>
+
+    <span class="tooltip-base tool tooltipstered">?</span>
+
+  <span class="component-status " title="">
+##var tab_status##
+  </span>
+
+  <span class="tool icon-indicator fa fa-check tooltipstered"></span>
+
+</div>
+
+          </div>
+##end tab
+
+##label L_tab
+
+    </div>
+    <div class="component-statuses-legend font-small">
+  <div class="legend-item status-green">
+    <span class="icon-indicator fa fa-check"></span>
+    Operational
+  </div>
+  <div class="legend-item status-yellow">
+    <span class="icon-indicator fa fa-minus-square"></span>
+    Degraded Performance
+  </div>
+  <div class="legend-item status-orange">
+    <span class="icon-indicator fa fa-exclamation-triangle"></span>
+    Partial Outage
+  </div>
+  <div class="breaker"></div>
+  <div class="legend-item status-red">
+    <span class="icon-indicator fa fa-times"></span>
+    Major Outage
+  </div>
+  <div class="legend-item status-blue">
+    <span class="icon-indicator fa fa-wrench"></span>
+    Maintenance
+  </div>
+</div>
+
+  </div>
+
+
+
+
+
+
+      <div class="incidents-list format-expanded">
+<!--        <a class="font-largest no-link" id="past-incidents" href="https://www.githubstatus.com/#past-incidents">Past Incidents</a>
+-->
+          
+##begin past_day_ok
+  <div class="status-day font-regular no-incidents">
+    <div class="date border-color font-large">##var month##  <var data-var="date">##var day##</var>, <var data-var="year">##var year##</var></div>
+        <p class="color-secondary">No incidents reported today.</p>
+  </div>
+##end past_day_ok
+
+          
+##begin past_day_boom
+  <div class="status-day font-regular ">
+    <div class="date border-color font-large">##var month##  <var data-var="date">##var day##</var>, <var data-var="year">##var year##</var></div>
+          <div class="incident-container">
+
+  <div class="updates-container">
+    <!-- postmortem -->
+  <div class="incident-title impact-none font-large">
+    <a href="#">Incident on ##var full_date_utc##</a>
+  </div>
+
+    <!-- incident updates -->
+      <div class="update font-regular resolved">
+        ##var description##
+        <br>
+
+      </div>
+  </div>
+
+</div>
+
+  </div>
+##end past_day_boom
+
+##label L_past_day
+
+      </div>
+
+
+      
+    </div>
+
+      <div class="custom-footer-container">
+    
+
+
+  </div>
+
+
+  </div>
+   
+    <div id="cpt-notification-container"></div>
+</body></html>
