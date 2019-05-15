@@ -91,10 +91,10 @@
     <link rel="alternate" type="application/atom+xml" title="ATOM" href="https://www.githubstatus.com/history.atom">
 
     <!-- Le styles -->
-    <link rel="stylesheet" media="screen" href="file:///home/recolic/tmp/GitHubStatus_files/0.87897096de04b7630b93.css">
-    <link rel="stylesheet" media="all" href="file:///home/recolic/tmp/GitHubStatus_files/status_manifest-72ddb62f780d9c26a0a548d46d01029cba9f1ecc5cf7d1a57c44c2aff304b19c.css">
+    <link rel="stylesheet" media="screen" href="res/_status/0.87897096de04b7630b93.css">
+    <link rel="stylesheet" media="all" href="res/_status/status_manifest-72ddb62f780d9c26a0a548d46d01029cba9f1ecc5cf7d1a57c44c2aff304b19c.css">
 
-      <script src="file:///home/recolic/tmp/GitHubStatus_files/jquery.min.js"></script>
+      <script src="res/_status/jquery.min.js"></script>
 
     <script>
       window.pageColorData = {"blue":"#0366d6","border":"#e1e4e8","body_background":"#ffffff","font":"#24292e","graph":"#0366d6","green":"#28a745","light_font":"#6a737d","link":"#0366d6","orange":"#e36209","red":"#dc3545","yellow":"#dbab09"};
@@ -342,7 +342,7 @@
 
 
     <!-- custom css -->
-        <link rel="stylesheet" type="text/css" href="file:///home/recolic/tmp/GitHubStatus_files/external20190311-59-ij3qvc.css">
+        <link rel="stylesheet" type="text/css" href="res/_status/external20190311-59-ij3qvc.css">
 
 
     <!-- Le HTML5 shim -->
@@ -354,7 +354,7 @@
 
 
     
-  <script charset="utf-8" src="file:///home/recolic/tmp/GitHubStatus_files/button.dd024c345fc26f7c7a8d9938b67e5d3d.js"></script></head>
+  <script charset="utf-8" src="res/_status/button.dd024c345fc26f7c7a8d9938b67e5d3d.js"></script></head>
 
 
   <body class="status index status-none" data-breakpoint-reached="true">
@@ -447,13 +447,12 @@
 
 
       <div class="incidents-list format-expanded">
-<!--        <a class="font-largest no-link" id="past-incidents" href="https://www.githubstatus.com/#past-incidents">Past Incidents</a>
--->
+        <a class="font-largest no-link" id="past-incidents" href="#">Past Incidents</a>
           
 ##begin past_day_ok
   <div class="status-day font-regular no-incidents">
     <div class="date border-color font-large">##var month##  <var data-var="date">##var day##</var>, <var data-var="year">##var year##</var></div>
-        <p class="color-secondary">No incidents reported today.</p>
+        <p class="color-secondary">No incidents reported.</p>
   </div>
 ##end past_day_ok
 

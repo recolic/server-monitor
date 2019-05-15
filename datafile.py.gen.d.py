@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3 -u
 
 import time
 from datafile_gen_daemon_conf import *
@@ -47,7 +47,7 @@ def save_status():
     curr_time = datetime.datetime.utcnow()
     for i in range(14):
         # previous 2 weeks.
-        the_date = curr_time - datetime.timedelta(days=i)
+        the_date = curr_time - datetime.timedelta(days=i) # DON"T REVERSE THE ORDER!
         the_month, the_day, the_year = the_date.strftime("%b"),the_date.strftime("%d"),the_date.strftime("%Y")
 
         msgs = []
@@ -67,6 +67,7 @@ def save_status():
         ok = msgs == []
 
         elements.append('({}, ("{}","{}","{}","{}","{}"))'.format(ok, the_year,the_month,the_day, crash_time, msg))
+    elements = elements[::-1]
     past_day_str = 'past_day = [ ' + ','.join(elements) + ' ]'
     file_content += past_day_str + '\n'
 

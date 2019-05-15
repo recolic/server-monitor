@@ -9,7 +9,8 @@ RUN pacman -S --noconfirm python
 RUN mkdir /app
 COPY . /app
 
-CMD ["/app/datafile.py.gen.d.py"]
+WORKDIR /app
+CMD ["./datafile.py.gen.d.py"]
 
 # docker run -v /var/www/html/status.html:/app/status.html my_docker_image
 

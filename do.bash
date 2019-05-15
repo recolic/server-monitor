@@ -69,11 +69,12 @@ function do_test () {
             curl -s -L http://recolic.net/ | grep 'Follow me on github' || return $?
             ;;
         mail )
-            test_tcp smtp.recolic.net 25 | grep 220 || return $?
+            # Fucking DigitalOcean
+            # test_tcp smtp.recolic.net 25 | grep 220 || return $?
             test_tcp smtp.recolic.net 587 | grep 220 || return $?
-            test_tcp imap.recolic.net 143 | grep OK || return $?
+            # test_tcp imap.recolic.net 143 | grep OK || return $?
             test_tcp imap.recolic.net 993 || return $?
-            test_tcp pop3.recolic.net 110 | grep OK || return $?
+            # test_tcp pop3.recolic.net 110 | grep OK || return $?
             test_tcp pop3.recolic.net 995 || return $?
 
             curl -s https://mail.recolic.net/mail/ | grep 'Welcome to Roundcube' || return $?
