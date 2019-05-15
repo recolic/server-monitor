@@ -4,7 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- force IE browsers in compatibility mode to use their most aggressive rendering engine -->
 
-    
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />    
+<meta http-equiv="pragma" content="no-cache" />
 
 
     <title>Recolic Hosting Status</title>
