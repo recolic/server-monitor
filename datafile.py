@@ -1,5 +1,5 @@
 # datafile for status.html generator.
 
-current_status = [ ("Reverse Proxy","green"),("Drive","green") ]
+current_status = [ ("Reverse Proxy","green"),("Drive","green"),("ShadowSocks taiwan","green"),("ShadowSocks US-1","green"),("ShadowSocks US-5","green"),("ShadowSocks US-6","green"),("OpenVPN taiwan","green"),("Main Website","green"),("Mail Server","green"),("Teachermate Web Seller","green"),("Git","green"),("ZhiXiang Fucker","green"),("Minecraft Server","green"),("httpdb","green"),("DDNS WuHan","green"),("DDNS USA","green"),("Download Site","green") ]
 saved_events = [  ]
 past_day = [ (True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")),(True, ("2019","May","14","None","")) ]

@@ -47,7 +47,7 @@ def save_status():
     curr_time = datetime.datetime.utcnow()
     for i in range(14):
         # previous 2 weeks.
-        the_date = curr_time - datetime.timedelta(days=1)
+        the_date = curr_time - datetime.timedelta(days=i)
         the_month, the_day, the_year = the_date.strftime("%b"),the_date.strftime("%d"),the_date.strftime("%Y")
 
         msgs = []
