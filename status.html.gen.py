@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+from functools import reduce
+
 template_text = ''
 with open('status.html.template') as f:
     template_text = f.read()
@@ -67,38 +69,52 @@ def load_sections():
     template_text_without_sections += curr_section_content
     template_text = template_text_without_sections
 
+def _color2stat(color):
+    if color == 'green':
+        return 'Operational'
+    if color == 'blue':
+        return 'Maintenance'
+    if color == 'red':
+        return 'Major Outage'
+    if color == 'orange':
+        return 'Partial Outage'
+    if color == 'yellow':
+        return 'Degraded Performance'
+    raise RuntimeError('Unknown color: ' + color)
+
 load_sections()
 ## There're still labels in template_text
 
 ############## logics ###############
 
-# Everything currently working
-all_ok = True
+from datafile import *
 # past_day := [(everything_ok, disaster_info), ...]
 # disaster_info := None | (year,month,day,full_date_UTC,desc)
 #                 if everything_ok, full_date and desc can be None
-past_day = [
-        (True, (2019,'May',14,None,None)),
-        (True, (2019,'May',13,None,None)),
-        (False, (2019,'May',12,'Tue 12 May 2019 04:35:37 AM PDT','<strong>Resolved</strong> - Something sucks.')),
-        (True, (2019,'May',11,None,None))
-        ]
-# 
-current_status = [
-        ('Git', 'green', 'Operational'),
-        ('OpenVPN', 'green', 'Operational'),
-        ('ShadowSocks taiwan1', 'green', 'Operational'),
-        ('Drive', 'blue', 'Maintenance'),
-        ('Reverse Proxy', 'green', 'Operational')
-        ]
-
+#past_day = [
+#        (True, (2019,'May',11,None,None)),
+#        (False, (2019,'May',12,'Tue 12 May 2019 04:35:37 AM PDT','<strong>Resolved</strong> - Something sucks.')),
+#        (True, (2019,'May',13,None,None)),
+#        (True, (2019,'May',14,None,None)),
+#        (True, (2019,'May',15,None,None))
+#        ]
+## 
+#current_status = [
+#        ('Git', 'green'),
+#        ('OpenVPN', 'green'),
+#        ('ShadowSocks taiwan1', 'green'),
+#        ('Drive', 'blue'),
+#        ('Reverse Proxy', 'green')
+#        ]
+# Everything currently working
+all_ok = reduce((lambda x,y: ('', x[1] if x[1]==y[1] else 'shit')), current_status)[1] == 'green'
 
 if all_ok:
     all_ok_text = get_section_with_vars(sections['all_ok'], {})
     template_text = insert_label(template_text, 'L_all_ok', all_ok_text)
 
 for lab in current_status:
-    var = {'tab_name':lab[0], 'tab_color':lab[1], 'tab_status':lab[2]}
+    var = {'tab_name':lab[0], 'tab_color':lab[1], 'tab_status':_color2stat(lab[1])}
     sec = get_section_with_vars(sections['tab'], var)
     template_text = insert_label(template_text, 'L_tab', sec)
 

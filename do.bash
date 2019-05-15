@@ -38,7 +38,7 @@ function do_test () {
             ;;
         drive )
             confirm_alive drive.recolic.net &&
-            curl -s https://drive.recolic.net/login | grep 'submit-wrapper' || return $?
+            curl -s https://drive.recolic.net/index.php/login | grep 'submit-wrapper' || return $?
             ;;
         ss-tw )
             confirm_alive nohsts.tw1.recolic.org &&
