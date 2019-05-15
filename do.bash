@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | ss-tw | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | ddns-us | dl | all" && exit 1
+[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | ss-tw | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | ddns-us | dl | shortlink | all" && exit 1
 
 function confirm_alive () {
     local host="$1"
@@ -115,6 +115,9 @@ function do_test () {
         dl )
             curl -s -L https://dl.recolic.net/ | grep 'Home page is not provided for this download site' || return $?
             ;;
+        shortlink )
+            curl -s 'https://recolic.net/go/index.php' --data 'target=https%3A%2F%2Fwww.google.com&name=google&super=' | grep Success || return $?
+            ;;
     esac
 
     
@@ -137,6 +140,7 @@ if [[ "$1" = all ]]; then
     do_test push-httpdb-agent &&
     do_test ddns-wuhan &&
     do_test ddns-us &&
+    do_test shortlink &&
     do_test dl
     exit $?
 fi

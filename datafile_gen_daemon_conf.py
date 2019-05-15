@@ -18,6 +18,7 @@ tests = [
         ('./do.bash ddns-wuhan', 'DDNS WuHan'), 
         ('./do.bash ddns-us', 'DDNS USA'), 
         ('./do.bash dl', 'Download Site'), 
+        ('./do.bash shortlink', 'Short Link'), 
         ]
 
 test_interval = 20 * 60 # 20min
