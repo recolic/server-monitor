@@ -6,7 +6,7 @@ import datetime
 import subprocess
 
 # cmd in testcase is tag.
-events = [] # [ (tag, UTC_time_string, information, month,day,year) ]
+events = [] # [ [tag, UTC_time_string, information, month,day,year] ]
 curr_status = {} # tag -> returncode
 
 def on_problem_fixed(tag, desc):
@@ -20,10 +20,11 @@ def on_problem_fixed(tag, desc):
 
 def on_broken(tag, desc):
     # ...
+    global events
     curr_time = datetime.datetime.utcnow()
     msg = desc + ' service went down.'
-    new_event = (tag, curr_time.strftime("%a %d %b %Y %H:%M:%S %p UTC"), msg, curr_time.strftime("%b"),curr_time.strftime("%d"),curr_time.strftime("%Y"))
-    events = new_event + events
+    new_event = [tag, curr_time.strftime("%a %d %b %Y %H:%M:%S %p UTC"), msg, curr_time.strftime("%b"),curr_time.strftime("%d"),curr_time.strftime("%Y")]
+    events.append(new_event)
 
 def save_status():
     #
@@ -38,7 +39,7 @@ def save_status():
 
     elements = []
     for event in events:
-        elements.append('("{}","{}","{}","{}","{}","{}")'.format(event[0],event[1],event[2],event[3],event[4],event[5]))
+        elements.append('["{}","{}","{}","{}","{}","{}"]'.format(event[0],event[1],event[2],event[3],event[4],event[5]))
     saved_events_str = 'saved_events = [ ' + ','.join(elements) + ' ]'
     file_content += saved_events_str + '\n'
 
