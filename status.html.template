@@ -417,7 +417,8 @@
 
 ##label L_tab
 
-    <div class="component-statuses-legend font-small">
+<!--
+<div class="component-statuses-legend font-small">
   <div class="legend-item status-green">
     <span class="icon-indicator fa fa-check"></span>
     Operational
@@ -440,6 +441,7 @@
     Maintenance
   </div>
 </div>
+-->
 
   </div>
 
@@ -449,7 +451,7 @@
 
 
       <div class="incidents-list format-expanded">
-        <a class="font-largest no-link" id="past-incidents" href="#">Past Incidents</a>
+        <a class="font-largest no-link" id="past-incidents">Past Incidents</a>
           
 ##begin past_day_ok
   <div class="status-day font-regular no-incidents">
@@ -467,7 +469,7 @@
   <div class="updates-container">
     <!-- postmortem -->
   <div class="incident-title impact-none font-large">
-    <a href="#">Incident on ##var full_date_utc##</a>
+    <a>Incident on ##var full_date_utc##</a>
   </div>
 
     <!-- incident updates -->
