@@ -120,31 +120,34 @@ function do_test () {
             curl -s 'https://recolic.net/go/index.php' --data 'target=https%3A%2F%2Fwww.google.com&name=google&super=' | grep Success || return $?
             ;;
     esac
+}
 
-    
+function do_test_twice () {
+    do_test "$1" || do_test "$1"
+    return $?
 }
     
 if [[ "$1" = all ]]; then
-    do_test rproxy &&
-    do_test drive &&
-    do_test ss-tw &&
-    do_test ss-us1 &&
-    do_test ss-us5 &&
-    do_test ss-us6 &&
-    do_test ovpn-tw &&
-    do_test www &&
-    do_test mail &&
-    do_test tm &&
-    do_test git &&
-    do_test zhixiang &&
-    do_test mc &&
-    do_test push-httpdb-agent &&
-    do_test ddns-wuhan &&
-    do_test ddns-us &&
-    do_test shortlink &&
-    do_test dl
+    do_test_twice rproxy &&
+    do_test_twice drive &&
+    do_test_twice ss-tw &&
+    do_test_twice ss-us1 &&
+    do_test_twice ss-us5 &&
+    do_test_twice ss-us6 &&
+    do_test_twice ovpn-tw &&
+    do_test_twice www &&
+    do_test_twice mail &&
+    do_test_twice tm &&
+    do_test_twice git &&
+    do_test_twice zhixiang &&
+    do_test_twice mc &&
+    do_test_twice push-httpdb-agent &&
+    do_test_twice ddns-wuhan &&
+    do_test_twice ddns-us &&
+    do_test_twice shortlink &&
+    do_test_twice dl
     exit $?
 fi
 
-do_test "$1"
+do_test_twice "$1"
 exit $?

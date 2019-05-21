@@ -24,7 +24,7 @@ def on_broken(tag, desc):
     curr_time = datetime.datetime.utcnow()
     msg = desc + ' service went down.'
     new_event = [tag, curr_time.strftime("%a %d %b %Y %H:%M:%S %p UTC"), msg, curr_time.strftime("%b"),curr_time.strftime("%d"),curr_time.strftime("%Y")]
-    events.append(new_event)
+    events = [new_event] + events # latest event first!
 
 def save_status():
     #
