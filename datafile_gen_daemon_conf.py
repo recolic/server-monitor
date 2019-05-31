@@ -16,7 +16,7 @@ tests = [
         ('./do.bash mc', 'Minecraft Server'), 
         ('./do.bash push-httpdb-agent', 'httpdb'), 
         ('./do.bash ddns-wuhan', 'DDNS WuHan'), 
-        ('./do.bash ddns-us', 'DDNS USA'), 
+        ('./do.bash rocket', 'Recolic Rocket Chat'), 
         ('./do.bash dl', 'Download Site'), 
         ('./do.bash shortlink', 'Short Link'), 
         ]
