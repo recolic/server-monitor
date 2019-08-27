@@ -3,7 +3,9 @@
 tests = [
         ('./do.bash rproxy', 'Reverse Proxy'),
         ('./do.bash drive', 'Drive'), 
-        ('./do.bash ss-tw', 'ShadowSocks taiwan'), 
+        ('./do.bash ssr-tw', 'ShadowSocksR taiwan'), 
+        ('./do.bash ssr-hk', 'ShadowSocksR HongKong'), 
+        ('./do.bash frp-hk', 'FRPS HongKong'), 
         ('./do.bash ss-us1', 'ShadowSocks US-1'), 
         ('./do.bash ss-us5', 'ShadowSocks US-5'), 
         ('./do.bash ss-us6', 'ShadowSocks US-6'), 

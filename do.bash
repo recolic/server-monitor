@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | ss-tw | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | all" && exit 1
+[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | ssr-tw | ssr-hk | frp-hk | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | all" && exit 1
 
 function confirm_alive () {
     local host="$1"
@@ -39,11 +39,16 @@ function do_test () {
             ;;
         drive )
             confirm_alive drive.recolic.net &&
-            curl -s https://drive.recolic.net/index.php/login | grep 'submit-wrapper' || return $?
+            curl -s https://drive.recolic.net:444/index.php/login | grep 'submit-wrapper' || return $?
             ;;
-        ss-tw )
-            confirm_alive nohsts.tw1.recolic.org &&
-            test_ss base.tw1.recolic.net || return $?
+        ssr-tw )
+            test_tcp base.tw1.recolic.net 465 || return $?
+            ;;
+        ssr-hk )
+            test_tcp base.hk1.recolic.net 467 || return $?
+            ;;
+        frp-hk )
+            test_tcp base.hk1.recolic.net 30999 || return $?
             ;;
         ss-us1 )
             test_ss base.us1.recolic.net || return $?
@@ -140,7 +145,7 @@ function do_test () {
             ;;
         rocket )
             confirm_alive rocket.recolic.net &&
-            curl -s https://rocket.recolic.net/api/info | grep 'success":true' || return $?
+            curl -s https://rocket.recolic.net:444/api/info | grep 'success":true' || return $?
             ;;
     esac
 }
@@ -153,7 +158,9 @@ function do_test_twice () {
 if [[ "$1" = all ]]; then
     do_test_twice rproxy &&
     do_test_twice drive &&
-    do_test_twice ss-tw &&
+    do_test_twice ssr-tw &&
+    do_test_twice ssr-hk &&
+    do_test_twice frp-hk &&
     do_test_twice ss-us1 &&
     do_test_twice ss-us5 &&
     do_test_twice ss-us6 &&
