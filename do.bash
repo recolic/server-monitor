@@ -2,13 +2,15 @@
 
 [[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | ssr-tw | ssr-hk | frp-hk | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | all" && exit 1
 
+[[ $(id -u) = 0 ]] && ping_fld="-f"
+
 function confirm_alive () {
     local host="$1"
     timeout 4s ping "$host" -c 1
     local ret="$?"
     [[ $ret != 124 ]] && [[ $ret != 2 ]] && return $ret
     for i in {1..4}; do
-        timeout 3s ping "$host" -c 1 && return 0
+        timeout 12s ping "$host" -c 1 $ping_fld && return 0
         sleep 1
     done
     return 124
