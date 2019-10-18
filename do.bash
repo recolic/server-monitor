@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | ssr-tw | ssr-hk | frp-hk | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | all" && exit 1
+[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | v-tw | v-hk | frp-hk | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | org-dns | home-http | all" && exit 1
 
 [[ $(id -u) = 0 ]] && ping_fld="-f"
 
@@ -43,11 +43,11 @@ function do_test () {
             confirm_alive drive.recolic.net &&
             curl -s https://drive.recolic.net:444/index.php/login | grep 'submit-wrapper' || return $?
             ;;
-        ssr-tw )
-            test_tcp base.tw1.recolic.net 465 || return $?
+        v-tw )
+            curl https://git.recolic.net/vr/test -vv 2>&1 | grep 404 || return $?
             ;;
-        ssr-hk )
-            test_tcp base.hk1.recolic.net 467 || return $?
+        v-hk )
+            test_tcp base.hk1.recolic.net 443 || return $?
             ;;
         frp-hk )
             test_tcp base.hk1.recolic.net 30999 || return $?
@@ -72,9 +72,9 @@ function do_test () {
         www )
             confirm_alive recolic.net &&
             confirm_alive www.recolic.net &&
-            curl -s https://recolic.net/ | grep 'Follow me on github' || return $?
-            curl -s https://www.recolic.net/ | grep 'Follow me on github' || return $?
-            curl -s -L http://recolic.net/ | grep 'Follow me on github' || return $?
+            curl -s https://recolic.net/ | grep 'Powered by' || return $?
+            curl -s https://www.recolic.net/ | grep 'Powered by' || return $?
+            curl -s -L http://recolic.net/ | grep 'Powered by' || return $?
             ;;
         mail )
             confirm_alive smtp.recolic.net &&
@@ -149,7 +149,17 @@ function do_test () {
             confirm_alive rocket.recolic.net &&
             curl -s https://rocket.recolic.net:444/api/info | grep 'success":true' || return $?
             ;;
+        org-dns )
+            confirm_alive www.recolic.org &&
+            curl -s https://recolic.org/ || return $?
+            ;;
+        home-http )
+            confirm_alive home.cnm.cool &&
+            curl -s http://home.cnm.cool/ || return $?
+            ;;
     esac
+
+    return 0
 }
 
 function do_test_twice () {
@@ -160,8 +170,8 @@ function do_test_twice () {
 if [[ "$1" = all ]]; then
     do_test_twice rproxy &&
     do_test_twice drive &&
-    do_test_twice ssr-tw &&
-    do_test_twice ssr-hk &&
+    do_test_twice v-tw &&
+    do_test_twice v-hk &&
     do_test_twice frp-hk &&
     do_test_twice ss-us1 &&
     do_test_twice ss-us5 &&
@@ -177,7 +187,9 @@ if [[ "$1" = all ]]; then
     do_test_twice ddns-wuhan &&
     do_test_twice rocket &&
     do_test_twice shortlink &&
-    do_test_twice dl
+    do_test_twice dl &&
+    do_test_twice org-dns &&
+    do_test_twice home-http
     exit $?
 fi
 

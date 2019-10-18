@@ -1,11 +1,11 @@
 # datafile generator daemon config
 
 tests = [
-        ('./do.bash rproxy', 'Reverse Proxy'),
+        ('./do.bash rproxy', 'Reverse Proxy (Old SSH)'),
         ('./do.bash drive', 'Drive'), 
-        ('./do.bash ssr-tw', 'ShadowSocksR taiwan'), 
-        ('./do.bash ssr-hk', 'ShadowSocksR HongKong'), 
-        ('./do.bash frp-hk', 'FRPS HongKong'), 
+        ('./do.bash v-tw', 'Project V taiwan'), 
+        ('./do.bash v-hk', 'Project V HongKong'), 
+        ('./do.bash frp-hk', 'Reverse Proxy (HongKong FRP)'), 
         ('./do.bash ss-us1', 'ShadowSocks US-1'), 
         ('./do.bash ss-us5', 'ShadowSocks US-5'), 
         ('./do.bash ss-us6', 'ShadowSocks US-6'), 
@@ -21,6 +21,8 @@ tests = [
         ('./do.bash rocket', 'Recolic Rocket Chat'), 
         ('./do.bash dl', 'Download Site'), 
         ('./do.bash shortlink', 'Short Link'), 
+        ('./do.bash org-dns', 'recolic.org DNS'), 
+        ('./do.bash home-http', 'Home HTTP, NFS, NAS, BaiduDownloader, etc'), 
         ]
 
 test_interval = 20 * 60 # 20min
