@@ -41,7 +41,7 @@ function do_test () {
             ;;
         drive )
             confirm_alive drive.recolic.net &&
-            curl -s https://drive.recolic.net:444/index.php/login | grep 'submit-wrapper' || return $?
+            curl -s https://drive.recolic.net/index.php/login | grep 'drive.recolic.' || return $?
             ;;
         v-tw )
             curl https://git.recolic.net/vr/test -vv 2>&1 | grep 404 || return $?
@@ -155,7 +155,7 @@ function do_test () {
             ;;
         home-http )
             confirm_alive home.cnm.cool &&
-            curl -s http://home.cnm.cool/ || return $?
+            curl -s http://home.cnm.cool:81/ || return $?
             ;;
     esac
 
