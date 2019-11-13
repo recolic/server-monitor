@@ -4,6 +4,8 @@
 
 [[ $(id -u) = 0 ]] && ping_fld="-f"
 
+RETURN_CODE_SERVICE_CLOSE=91
+
 function confirm_alive () {
     local host="$1"
     timeout 4s ping "$host" -c 1
@@ -36,6 +38,7 @@ function do_test () {
     echo "Testing >> $1" > /dev/fd/2
     case "$1" in
         rproxy )
+            return $RETURN_CODE_SERVICE_CLOSE
             confirm_alive proxy.recolic.net &&
             test_tcp proxy.recolic.net 22 | grep -a SSH || return $?
             ;;
@@ -53,12 +56,15 @@ function do_test () {
             test_tcp base.hk1.recolic.net 30999 || return $?
             ;;
         ss-us1 )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_ss base.us1.recolic.net || return $?
             ;;
         ss-us5 )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_ss base.us5.recolic.net || return $?
             ;;
         ss-us6 )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_ss base.us6.recolic.net || return $?
             ;;
         ovpn-tw )
@@ -111,15 +117,18 @@ function do_test () {
             curl -s http://git.recolic.net/ -L | grep 'users/sign_in' || return $?
             ;;
         zhixiang )
+            return $RETURN_CODE_SERVICE_CLOSE
             grep 'api.anjie-elec.cn' /etc/hosts || echo '123.206.117.183 api.anjie-elec.cn' >> /etc/hosts
             [[ $? != 0 ]] && echo 'Failed to edit hosts file! Unable to perform this test.' > /dev/fd/2 && return 0
             curl -k -X POST -s 'https://api.anjie-elec.cn/api/usewater/Add?accessToken=FUCKYOU' | grep '104871845A503324' || return $?
             ;;
         mc )
+            return $RETURN_CODE_SERVICE_CLOSE
             confirm_alive mc.recolic.net &&
             test_tcp mc.recolic.net 25565 || return $?
             ;;
         push-httpdb-agent )
+            return $RETURN_CODE_SERVICE_CLOSE
             local r="$RANDOM"
             confirm_alive git.recolic.net &&
             curl -s "https://git.recolic.net/_r_testing/set/_status_test|$r" &&
@@ -146,6 +155,7 @@ function do_test () {
             curl -s 'https://recolic.net/go/index.php' --data 'target=https%3A%2F%2Fwww.google.com&name=google&super=' | grep Success || return $?
             ;;
         rocket )
+            return $RETURN_CODE_SERVICE_CLOSE
             confirm_alive rocket.recolic.net &&
             curl -s https://rocket.recolic.net:444/api/info | grep 'success":true' || return $?
             ;;

@@ -73,7 +73,7 @@ def _color2stat(color):
     if color == 'green':
         return 'Operational'
     if color == 'blue':
-        return 'Maintenance'
+        return 'Service closed'
     if color == 'red':
         return 'Major Outage'
     if color == 'orange':

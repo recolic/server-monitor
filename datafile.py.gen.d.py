@@ -9,6 +9,8 @@ import subprocess
 events = [] # [ [tag, UTC_time_string, information, month,day,year] ]
 curr_status = {} # tag -> returncode
 
+RETURN_CODE_SERVICE_CLOSE = 91
+
 def on_problem_fixed(tag, desc):
     # ...
     fixed_prefix = '<strong>Resolved</strong> - '
@@ -32,7 +34,15 @@ def save_status():
 
     elements = []
     for tag, desc in tests:
-        color = 'green' if curr_status[tag] == 0 else 'red'
+        if curr_status[tag] == 0:
+            # OK
+            color = 'green'
+        elif curr_status[tag] == RETURN_CODE_SERVICE_CLOSE:
+            # Service closed as expected
+            color = 'blue'
+        else:
+            # Service down
+            color = 'red'
         elements.append('("{}","{}")'.format(desc, color))
     current_status_str = 'current_status = [ ' + ','.join(elements) + ' ]'
     file_content += current_status_str + '\n'
