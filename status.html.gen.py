@@ -107,7 +107,8 @@ from datafile import *
 #        ('Reverse Proxy', 'green')
 #        ]
 # Everything currently working
-all_ok = reduce((lambda x,y: ('', x[1] if x[1]==y[1] else 'shit')), current_status)[1] == 'green'
+all_ok = len(list(filter(lambda x: x[1] != 'green' and x[1] != 'blue', current_status))) == 0
+
 
 if all_ok:
     all_ok_text = get_section_with_vars(sections['all_ok'], {})
