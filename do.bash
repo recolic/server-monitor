@@ -106,6 +106,7 @@ function do_test () {
             curl http://mail.recolic.net/ -vv 2>&1 | grep 'https://mail.recolic.net/' || return $?
             ;;
         tm )
+            return $RETURN_CODE_SERVICE_CLOSE
             confirm_alive tm.recolic.net &&
             curl -s https://tm.recolic.net/ | grep inputButtonCss &&
             curl -s http://tm.recolic.net/ -L | grep inputButtonCss || return $?
