@@ -43,6 +43,7 @@ function do_test () {
             test_tcp proxy.recolic.net 22 | grep -a SSH || return $?
             ;;
         drive )
+            # NO icmp required because of udp2raw
             curl -s https://drive.recolic.net/index.php/login | grep 'drive.recolic.' || return $?
             ;;
         v-tw )
@@ -72,7 +73,9 @@ function do_test () {
             # There's also something running at another port to obfuse the obfused traffic again
             #     to fight against GFT deep-learning VPN detection.
             # So I can do nothing.....
-            test_icmp base.tw1.recolic.net || return $?
+
+            # NO icmp required because of udp2raw
+            # test_icmp base.tw1.recolic.net || return $?
             ;;
         www )
             test_icmp recolic.net &&
@@ -112,7 +115,7 @@ function do_test () {
             curl -s 'https://tm.recolic.net/addtask?openid=23251fc131e118d07fc9932f3c3de92c&N=30.508914&E=114.40718&key=FUCKYOU' | grep 'invalid key' || return $?
             ;;
         git )
-            test_icmp git.recolic.net &&
+            # NO icmp required because of udp2raw
             curl -s https://git.recolic.net/ | grep 'users/sign_in' &&
             curl -s http://git.recolic.net/ -L | grep 'users/sign_in' || return $?
             ;;
