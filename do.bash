@@ -6,7 +6,7 @@
 
 RETURN_CODE_SERVICE_CLOSE=91
 
-function confirm_alive () {
+function test_icmp () {
     local host="$1"
     timeout 4s ping "$host" -c 1
     local ret="$?"
@@ -29,7 +29,7 @@ function test_tcp () {
 
 function test_ss () {
     # I can not publish password here so...
-    confirm_alive "$1"
+    test_icmp "$1"
     test_tcp "$1" 25551
     return $?
 }
@@ -39,11 +39,10 @@ function do_test () {
     case "$1" in
         rproxy )
             return $RETURN_CODE_SERVICE_CLOSE
-            confirm_alive proxy.recolic.net &&
+            test_icmp proxy.recolic.net &&
             test_tcp proxy.recolic.net 22 | grep -a SSH || return $?
             ;;
         drive )
-            confirm_alive drive.recolic.net &&
             curl -s https://drive.recolic.net/index.php/login | grep 'drive.recolic.' || return $?
             ;;
         v-tw )
@@ -73,20 +72,20 @@ function do_test () {
             # There's also something running at another port to obfuse the obfused traffic again
             #     to fight against GFT deep-learning VPN detection.
             # So I can do nothing.....
-            confirm_alive base.tw1.recolic.net || return $?
+            test_icmp base.tw1.recolic.net || return $?
             ;;
         www )
-            confirm_alive recolic.net &&
-            confirm_alive www.recolic.net &&
+            test_icmp recolic.net &&
+            test_icmp www.recolic.net &&
             curl -s https://recolic.net/ | grep 'Powered by' || return $?
             curl -s https://www.recolic.net/ | grep 'Powered by' || return $?
             curl -s -L http://recolic.net/ | grep 'Powered by' || return $?
             ;;
         mail )
-            confirm_alive smtp.recolic.net &&
-            confirm_alive imap.recolic.net &&
-            confirm_alive mail.recolic.net &&
-            confirm_alive pop3.recolic.net || return $?
+            test_icmp smtp.recolic.net &&
+            test_icmp imap.recolic.net &&
+            test_icmp mail.recolic.net &&
+            test_icmp pop3.recolic.net || return $?
 
             # Fucking DigitalOcean
             if test_tcp smtp-mail.outlook.com 25 | grep 220; then
@@ -107,13 +106,13 @@ function do_test () {
             ;;
         tm )
             return $RETURN_CODE_SERVICE_CLOSE
-            confirm_alive tm.recolic.net &&
+            test_icmp tm.recolic.net &&
             curl -s https://tm.recolic.net/ | grep inputButtonCss &&
             curl -s http://tm.recolic.net/ -L | grep inputButtonCss || return $?
             curl -s 'https://tm.recolic.net/addtask?openid=23251fc131e118d07fc9932f3c3de92c&N=30.508914&E=114.40718&key=FUCKYOU' | grep 'invalid key' || return $?
             ;;
         git )
-            confirm_alive git.recolic.net &&
+            test_icmp git.recolic.net &&
             curl -s https://git.recolic.net/ | grep 'users/sign_in' &&
             curl -s http://git.recolic.net/ -L | grep 'users/sign_in' || return $?
             ;;
@@ -125,21 +124,21 @@ function do_test () {
             ;;
         mc )
             return $RETURN_CODE_SERVICE_CLOSE
-            confirm_alive mc.recolic.net &&
+            test_icmp mc.recolic.net &&
             test_tcp mc.recolic.net 25565 || return $?
             ;;
         push-httpdb-agent )
             return $RETURN_CODE_SERVICE_CLOSE
             local r="$RANDOM"
-            confirm_alive git.recolic.net &&
+            test_icmp git.recolic.net &&
             curl -s "https://git.recolic.net/_r_testing/set/_status_test|$r" &&
             local result=$(curl -s "https://git.recolic.net/_r_testing/get/_status_test") || return $?
             [[ $r = $result ]]
             return $?
             ;;
         ddns-wuhan )
-            confirm_alive base.ddns1.recolic.net &&
-            test_tcp base.ddns1.recolic.net 22 || return $?
+            # NO icmp required.
+            test_tcp base.ddns1.recolic.net 25566 || return $?
             ;;
         #ddns-us )
         #    test_tcp base.ddns2.recolic.net 22 | grep SSH &&
@@ -148,24 +147,24 @@ function do_test () {
         #    test_tcp nohsts.ddns2.recolic.org 80 || return $?
         #    ;;
         dl )
-            confirm_alive dl.recolic.net &&
+            test_icmp dl.recolic.net &&
             curl -s -L https://dl.recolic.net/ | grep 'Home page is not provided for this download site' || return $?
             ;;
         shortlink )
-            confirm_alive recolic.net &&
+            test_icmp recolic.net &&
             curl -s 'https://recolic.net/go/index.php' --data 'target=https%3A%2F%2Fwww.google.com&name=google&super=' | grep Success || return $?
             ;;
         rocket )
             return $RETURN_CODE_SERVICE_CLOSE
-            confirm_alive rocket.recolic.net &&
+            test_icmp rocket.recolic.net &&
             curl -s https://rocket.recolic.net:444/api/info | grep 'success":true' || return $?
             ;;
         org-dns )
-            confirm_alive www.recolic.org &&
+            test_icmp www.recolic.org &&
             curl -s https://recolic.org/ || return $?
             ;;
         home-http )
-            confirm_alive home.cnm.cool &&
+            # NO icmp required.
             curl -s http://home.cnm.cool:81/ || return $?
             ;;
     esac
