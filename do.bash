@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | v-tw | v-hk | frp-hk | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | org-dns | home-http | all" && exit 1
+[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | v-tw | v-hk | frp-hk | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | cc-dns | home-http | all" && exit 1
 
 [[ $(id -u) = 0 ]] && ping_fld="-f"
 
@@ -146,8 +146,8 @@ function do_test () {
         #ddns-us )
         #    test_tcp base.ddns2.recolic.net 22 | grep SSH &&
         #    test_tcp base.ddns2.recolic.net 80 &&
-        #    test_tcp nohsts.ddns2.recolic.org 22 | grep SSH &&
-        #    test_tcp nohsts.ddns2.recolic.org 80 || return $?
+        #    test_tcp nohsts.ddns2.recolic.cc 22 | grep SSH &&
+        #    test_tcp nohsts.ddns2.recolic.cc 80 || return $?
         #    ;;
         dl )
             test_icmp dl.recolic.net &&
@@ -162,13 +162,13 @@ function do_test () {
             test_icmp rocket.recolic.net &&
             curl -s https://rocket.recolic.net:444/api/info | grep 'success":true' || return $?
             ;;
-        org-dns )
-            test_icmp www.recolic.org &&
-            curl -s https://recolic.org/ || return $?
+        cc-dns )
+            test_icmp www.recolic.cc &&
+            curl -s https://recolic.cc/ || return $?
             ;;
         home-http )
             # NO icmp required.
-            curl -s http://home.cnm.cool:81/ || return $?
+            curl -s http://home.recolic-backend.xyz:81/ || return $?
             ;;
     esac
 
@@ -201,7 +201,7 @@ if [[ "$1" = all ]]; then
     do_test_twice rocket &&
     do_test_twice shortlink &&
     do_test_twice dl &&
-    do_test_twice org-dns &&
+    do_test_twice cc-dns &&
     do_test_twice home-http
     exit $?
 fi

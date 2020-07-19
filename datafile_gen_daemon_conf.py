@@ -21,7 +21,7 @@ tests = [
         ('./do.bash rocket', 'Recolic Rocket Chat'), 
         ('./do.bash dl', 'Download Site'), 
         ('./do.bash shortlink', 'Short Link'), 
-        ('./do.bash org-dns', 'recolic.org DNS'), 
+        ('./do.bash cc-dns', 'recolic.cc DNS'), 
         ('./do.bash home-http', 'Home HTTP, NFS, NAS, BaiduDownloader, etc'), 
         ]
 
