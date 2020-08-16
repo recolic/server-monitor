@@ -1,10 +1,10 @@
 #!/bin/bash
 
-[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := rproxy | drive | v-tw | v-hk | frp-hk | ss-us1 | ss-us5 | ss-us6 | ovpn-tw | www | mail | tm | git | zhixiang | mc | push-httpdb-agent | ddns-wuhan | rocket | dl | shortlink | cc-dns | home-http | all" && exit 1
+[[ $1 == '' ]] && echo -e 'Usage: '"$0 <operation> ...\n operation := ... | all" && exit 1
 
 [[ $(id -u) = 0 ]] && ping_fld="-f"
 
-RETURN_CODE_SERVICE_CLOSE=91
+[[ _$RETURN_CODE_SERVICE_CLOSE = _ ]] && RETURN_CODE_SERVICE_CLOSE=91
 
 function test_icmp () {
     local host="$1"
@@ -27,12 +27,6 @@ function test_tcp () {
     [[ $ret = 124 ]] && return 0 || return $ret
 }
 
-function test_ss () {
-    # I can not publish password here so...
-    test_icmp "$1"
-    test_tcp "$1" 25551
-    return $?
-}
 
 function do_test () {
     echo "Testing >> $1" > /dev/fd/2
@@ -44,28 +38,21 @@ function do_test () {
             ;;
         drive )
             # NO icmp required because of udp2raw
-            curl -s https://drive.recolic.net/index.php/login | grep 'drive.recolic.' || return $?
+            curl -s https://drive.recolic.net/login | grep 'drive.recolic.' || return $?
             ;;
         v-tw )
-            curl https://git.recolic.net/vr/test -vv 2>&1 | grep 404 || return $?
-            ;;
-        v-hk )
-            test_tcp base.hk1.recolic.net 443 || return $?
+            curl https://git.recolic.net/vr/test404 -vv 2>&1 | grep 404 || return $?
             ;;
         frp-hk )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_tcp base.hk1.recolic.net 30999 || return $?
             ;;
-        ss-us1 )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_ss base.us1.recolic.net || return $?
+        ss-us12 )
+            test_tcp base.us12.recolic.net 25551 || return $?
             ;;
-        ss-us5 )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_ss base.us5.recolic.net || return $?
-            ;;
-        ss-us6 )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_ss base.us6.recolic.net || return $?
+        ss-iplc )
+            test_tcp base.cnjp1.recolic.net 25551 || return $?
+            test_tcp base.cnjp1.recolic.net 25552 || return $?
             ;;
         ovpn-tw )
             # it's impossible to detect openvpn easily without ta.key and client-certificate
@@ -74,7 +61,7 @@ function do_test () {
             #     to fight against GFT deep-learning VPN detection.
             # So I can do nothing.....
 
-            # NO icmp required because of udp2raw
+            # NO icmp required because of traffic obfused as raw IP packet. 
             # test_icmp base.tw1.recolic.net || return $?
             ;;
         www )
@@ -139,16 +126,10 @@ function do_test () {
             [[ $r = $result ]]
             return $?
             ;;
-        ddns-wuhan )
+        ddns-home )
             # NO icmp required.
-            test_tcp base.ddns1.recolic.net 25566 || return $?
+            test_tcp base.ddns1.recolic.net 22 | grep -a SSH || return $?
             ;;
-        #ddns-us )
-        #    test_tcp base.ddns2.recolic.net 22 | grep SSH &&
-        #    test_tcp base.ddns2.recolic.net 80 &&
-        #    test_tcp nohsts.ddns2.recolic.cc 22 | grep SSH &&
-        #    test_tcp nohsts.ddns2.recolic.cc 80 || return $?
-        #    ;;
         dl )
             test_icmp dl.recolic.net &&
             curl -s -L https://dl.recolic.net/ | grep 'Home page is not provided for this download site' || return $?
@@ -170,6 +151,9 @@ function do_test () {
             # NO icmp required.
             curl -s http://home.recolic-backend.xyz:81/ || return $?
             ;;
+        * )
+            echo PROGRAMMING ERROR: NO TARGET "$1" available. 
+            return 1
     esac
 
     return 0
@@ -184,11 +168,9 @@ if [[ "$1" = all ]]; then
     do_test_twice rproxy &&
     do_test_twice drive &&
     do_test_twice v-tw &&
-    do_test_twice v-hk &&
     do_test_twice frp-hk &&
-    do_test_twice ss-us1 &&
-    do_test_twice ss-us5 &&
-    do_test_twice ss-us6 &&
+    do_test_twice ss-us12 &&
+    do_test_twice ss-iplc &&
     do_test_twice ovpn-tw &&
     do_test_twice www &&
     do_test_twice mail &&
@@ -197,8 +179,7 @@ if [[ "$1" = all ]]; then
     do_test_twice zhixiang &&
     do_test_twice mc &&
     do_test_twice push-httpdb-agent &&
-    do_test_twice ddns-wuhan &&
-    do_test_twice rocket &&
+    do_test_twice ddns-home &&
     do_test_twice shortlink &&
     do_test_twice dl &&
     do_test_twice cc-dns &&
