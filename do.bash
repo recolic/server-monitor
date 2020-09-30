@@ -50,6 +50,9 @@ function do_test () {
         ss-us12 )
             test_tcp base.us12.recolic.net 25551 || return $?
             ;;
+        ss-hk2 )
+            test_tcp base.hk2.recolic.net 25551 || return $?
+            ;;
         ss-iplc )
             test_tcp base.cnjp1.recolic.net 25551 || return $?
             test_tcp base.cnjp1.recolic.net 25552 || return $?
@@ -113,8 +116,6 @@ function do_test () {
             curl -k -X POST -s 'https://api.anjie-elec.cn/api/usewater/Add?accessToken=FUCKYOU' | grep '104871845A503324' || return $?
             ;;
         mc )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_icmp mc.recolic.net &&
             test_tcp mc.recolic.net 25565 || return $?
             ;;
         push-httpdb-agent )
@@ -160,7 +161,7 @@ function do_test () {
 }
 
 function do_test_twice () {
-    do_test "$1" || do_test "$1"
+    do_test "$1" || do_test "$1" || do_test "$1"
     return $?
 }
     
@@ -170,6 +171,7 @@ if [[ "$1" = all ]]; then
     do_test_twice v-tw &&
     do_test_twice frp-hk &&
     do_test_twice ss-us12 &&
+    do_test_twice ss-hk2 &&
     do_test_twice ss-iplc &&
     do_test_twice ovpn-tw &&
     do_test_twice www &&
