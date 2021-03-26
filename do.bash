@@ -41,11 +41,11 @@ function do_test () {
             curl -s https://drive.recolic.net/login | grep 'drive.recolic.' || return $?
             ;;
         v-tw )
+            return $RETURN_CODE_SERVICE_CLOSE
             curl https://git.recolic.net/vr/test404 -vv 2>&1 | grep 404 || return $?
             ;;
         frp-hk )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_tcp base.hk1.recolic.net 30999 || return $?
+            test_tcp proxy.recolic.net 30999 || return $?
             ;;
         ss-us12 )
             test_tcp base.us12.recolic.net 25551 || return $?
@@ -66,6 +66,7 @@ function do_test () {
 
             # NO icmp required because of traffic obfused as raw IP packet. 
             # test_icmp base.tw1.recolic.net || return $?
+            return $RETURN_CODE_SERVICE_CLOSE
             ;;
         www )
             test_icmp recolic.net &&
