@@ -1,10 +1,12 @@
-FROM archlinux/base
+FROM ubuntu:20.04
 
 MAINTAINER root@recolic.net
 
-RUN pacman -Sy
-RUN pacman -S --noconfirm curl netcat iputils grep
-RUN pacman -S --noconfirm python
+RUN apt update
+RUN apt install -y curl netcat iputils-ping python3.8
+# RUN pacman -Sy
+# RUN pacman -S --noconfirm curl netcat iputils grep
+# RUN pacman -S --noconfirm python
 
 RUN mkdir /app
 COPY . /app
