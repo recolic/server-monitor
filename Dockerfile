@@ -4,6 +4,7 @@ MAINTAINER root@recolic.net
 
 RUN apt update
 RUN apt install -y curl netcat iputils-ping python3.8
+RUN ln -s /usr/bin/python3.8 /usr/bin/python3
 # RUN pacman -Sy
 # RUN pacman -S --noconfirm curl netcat iputils grep
 # RUN pacman -S --noconfirm python
