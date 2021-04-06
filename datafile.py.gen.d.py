@@ -1,4 +1,4 @@
-#!/usr/bin/python3 -u
+#!/usr/bin/python3.8 -u
 
 import time
 from datafile_gen_daemon_conf import *
