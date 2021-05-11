@@ -451,7 +451,7 @@
 
 
       <div class="incidents-list format-expanded">
-        <a class="font-largest no-link" id="past-incidents">Past Incidents</a>
+        <a class="font-largest" id="past-incidents" href="/blog/post/recolic-incident-update">Past Incidents</a>
           
 ##begin past_day_ok
   <div class="status-day font-regular no-incidents">
