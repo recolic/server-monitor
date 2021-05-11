@@ -151,7 +151,7 @@ function do_test () {
             ;;
         home-http )
             # NO icmp required.
-            curl -s http://home.rtmp.asia:81/ || return $?
+            curl -L https://recolic.net/hms.php | grep betterlisting || return $?
             ;;
         * )
             echo PROGRAMMING ERROR: NO TARGET "$1" available. 
