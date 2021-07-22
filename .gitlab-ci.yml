@@ -24,7 +24,6 @@ services:
 
 before_script:
   - docker info
-  - env
 
 build:
   stage: build
