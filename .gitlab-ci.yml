@@ -1,109 +1,35 @@
-image: recolic/rserver-monitor
 
-stages:
-  - test
+image: docker:19.03.12
 
-rproxy:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash rproxy"
+variables:
+  # When using dind service, you must instruct docker to talk with the
+  # daemon started inside of the service. The daemon is available with
+  # a network connection instead of the default /var/run/docker.sock socket.
+  #
+  # The 'docker' hostname is the alias of the service container as described at
+  # https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#accessing-the-services
+  #
+  # If you're using GitLab Runner 12.7 or earlier with the Kubernetes executor and Kubernetes 1.6 or earlier,
+  # the variable must be set to tcp://localhost:2375 because of how the
+  # Kubernetes executor connects services to the job container
+  # DOCKER_HOST: tcp://localhost:2375
+  #
+  DOCKER_HOST: tcp://docker:2375
+  #
+  # This instructs Docker not to start over TLS.
+  DOCKER_TLS_CERTDIR: ""
 
-drive:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash drive"
+services:
+  - docker:19.03.12-dind
 
-ss-tw:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash ss-tw"
+before_script:
+  - docker info
+  - env
 
-ss-us1:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash ss-us1"
-
-ss-us5:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash ss-us5"
-
-ss-us6:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash ss-us6"
-
-ovpn-tw:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash ovpn-tw"
-
-www:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash www"
-
-mail:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash mail"
-
-tm:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash tm"
-
-git:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash git"
-
-zhixiang:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash zhixiang"
-
-mc:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash mc"
-  allow_failure: true
-
-push-httpdb-agent:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash push-httpdb-agent"
-  allow_failure: true
-
-ddns-wuhan:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash ddns-wuhan"
-
-ddns-us:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash ddns-us"
-
-dl:
-  stage: test
-  only: 
-    - schedules
-  script: "/do.bash dl"
+build:
+  stage: build
+  script:
+    - docker login -u recolic -p "$docker_pswd"
+    - docker build -t recolic/rserver-status .
+    - docker push recolic/rserver-status
 
