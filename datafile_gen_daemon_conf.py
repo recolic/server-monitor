@@ -20,6 +20,7 @@ tests = [
         ('./do.bash shortlink', 'Short Link'), 
         ('./do.bash cc-dns', 'recolic.cc DNS'), 
         ('./do.bash home-http', 'Home NAS & DDNS & HTTP'), 
+        ('./do.bash domain2ip', 'Domain to IP'), 
         ]
 # ('./do.bash ddns-home', 'DDNS home'), 
 

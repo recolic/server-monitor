@@ -153,6 +153,9 @@ function do_test () {
             # NO icmp required.
             curl -L https://recolic.net/hms.php | grep betterlisting || return $?
             ;;
+        domain2ip )
+            dig +short 1.1.1.1.ip.recolic.cc | grep 1.1.1.1 || return $?
+            ;;
         * )
             echo PROGRAMMING ERROR: NO TARGET "$1" available. 
             return 1
@@ -186,7 +189,8 @@ if [[ "$1" = all ]]; then
     do_test_twice shortlink &&
     do_test_twice dl &&
     do_test_twice cc-dns &&
-    do_test_twice home-http
+    do_test_twice home-http &&
+    do_test_twice domain2ip
     exit $?
 fi
 

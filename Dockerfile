@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 MAINTAINER root@recolic.net
 
 RUN apt update
-RUN apt install -y curl netcat iputils-ping python3.8
+RUN DEBIAN_FRONTEND=noninteractive apt install -y curl netcat iputils-ping python3.8 dnsutils
 RUN ln -s /usr/bin/python3.8 /usr/bin/python3
 # RUN pacman -Sy
 # RUN pacman -S --noconfirm curl netcat iputils grep
