@@ -4,7 +4,7 @@ tests = [
         ('./do.bash rproxy', 'Reverse Proxy (China FRP)'),
         ('./do.bash drive', 'Drive'), 
         ('./do.bash v-tw', 'Project V taiwan'), 
-        ('./do.bash frp-hk', 'Reverse Proxy (HongKong FRP)'), 
+        ('./do.bash frp-sg', 'Reverse Proxy (Singapore FRP)'), 
         ('./do.bash ss-iplc', 'Shadowsocks IPLC'), # Both CNIP and JPIP, requires linode to be working.
         ('./do.bash ss-us12', 'ShadowSocks US-12'), 
         ('./do.bash ss-hk2', 'ShadowSocks HK-2'), 

@@ -44,36 +44,31 @@ function do_test () {
             return $RETURN_CODE_SERVICE_CLOSE
             curl https://git.recolic.net/vr/test404 -vv 2>&1 | grep 404 || return $?
             ;;
-        frp-hk )
+        frp-sg )
             test_tcp proxy.recolic.net 30999 || return $?
             ;;
         ss-us12 )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_tcp base.us12.recolic.net 25551 || return $?
             ;;
         ss-hk2 )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_tcp base.hk2.recolic.net 25551 || return $?
             ;;
         ss-iplc )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_tcp base.cnjp1.recolic.net 25551 || return $?
             test_tcp base.cnjp1.recolic.net 25552 || return $?
             ;;
         ovpn-tw )
-            # it's impossible to detect openvpn easily without ta.key and client-certificate
-            #     because my server is using udp + tls-auth.
-            # There's also something running at another port to obfuse the obfused traffic again
-            #     to fight against GFT deep-learning VPN detection.
-            # So I can do nothing.....
-
-            # NO icmp required because of traffic obfused as raw IP packet. 
-            # test_icmp base.tw1.recolic.net || return $?
             return $RETURN_CODE_SERVICE_CLOSE
             ;;
         www )
             test_icmp recolic.net &&
             test_icmp www.recolic.net &&
-            curl -s https://recolic.net/ | grep 'Powered by' || return $?
-            curl -s https://www.recolic.net/ | grep 'Powered by' || return $?
-            curl -s -L http://recolic.net/ | grep 'Powered by' || return $?
+            curl -s "https://recolic.net/api/echo.php?KEEPALIVE" | grep KEEPALIVE || return $?
+            curl -s "https://www.recolic.net/api/echo.php?KEEPALIVE" | grep KEEPALIVE || return $?
+            curl -s -L "http://www.recolic.net/api/echo.php?KEEPALIVE" | grep KEEPALIVE || return $?
             ;;
         mail )
             test_icmp smtp.recolic.net &&
@@ -173,7 +168,7 @@ if [[ "$1" = all ]]; then
     do_test_twice rproxy &&
     do_test_twice drive &&
     do_test_twice v-tw &&
-    do_test_twice frp-hk &&
+    do_test_twice frp-sg &&
     do_test_twice ss-us12 &&
     do_test_twice ss-hk2 &&
     do_test_twice ss-iplc &&
