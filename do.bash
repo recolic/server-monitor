@@ -40,28 +40,17 @@ function do_test () {
             # NO icmp required because of udp2raw
             curl -s https://drive.recolic.net/login | grep 'drive.recolic.' || return $?
             ;;
-        v-tw )
-            return $RETURN_CODE_SERVICE_CLOSE
-            curl https://git.recolic.net/vr/test404 -vv 2>&1 | grep 404 || return $?
+        drive2 )
+            curl -s https://drive2.recolic.net/login | grep 'Recolic Cloud' || return $?
             ;;
         frp-sg )
             test_tcp proxy.recolic.net 30999 || return $?
             ;;
-        ss-us12 )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_tcp base.us12.recolic.net 25551 || return $?
+        frp-cdn )
+            test_tcp proxy-cdn.recolic.net 30999 || return $?
             ;;
-        ss-hk2 )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_tcp base.hk2.recolic.net 25551 || return $?
-            ;;
-        ss-iplc )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_tcp base.cnjp1.recolic.net 25551 || return $?
-            test_tcp base.cnjp1.recolic.net 25552 || return $?
-            ;;
-        ovpn-tw )
-            return $RETURN_CODE_SERVICE_CLOSE
+        comm100 )
+            curl -s -L https://www.comm100.pw/ | grep Comm100 || return $?
             ;;
         www )
             test_icmp recolic.net &&
@@ -93,35 +82,13 @@ function do_test () {
             curl -s https://mail.recolic.net/mail/ | grep 'Welcome to Roundcube' || return $?
             curl http://mail.recolic.net/ -vv 2>&1 | grep 'https://mail.recolic.net/' || return $?
             ;;
-        tm )
-            return $RETURN_CODE_SERVICE_CLOSE
-            test_icmp tm.recolic.net &&
-            curl -s https://tm.recolic.net/ | grep inputButtonCss &&
-            curl -s http://tm.recolic.net/ -L | grep inputButtonCss || return $?
-            curl -s 'https://tm.recolic.net/addtask?openid=23251fc131e118d07fc9932f3c3de92c&N=30.508914&E=114.40718&key=FUCKYOU' | grep 'invalid key' || return $?
-            ;;
         git )
             # NO icmp required because of udp2raw
             curl -s https://git.recolic.net/ | grep 'users/sign_in' &&
             curl -s http://git.recolic.net/ -L | grep 'users/sign_in' || return $?
             ;;
-        zhixiang )
-            return $RETURN_CODE_SERVICE_CLOSE
-            grep 'api.anjie-elec.cn' /etc/hosts || echo '123.206.117.183 api.anjie-elec.cn' >> /etc/hosts
-            [[ $? != 0 ]] && echo 'Failed to edit hosts file! Unable to perform this test.' > /dev/fd/2 && return 0
-            curl -k -X POST -s 'https://api.anjie-elec.cn/api/usewater/Add?accessToken=FUCKYOU' | grep '104871845A503324' || return $?
-            ;;
         mc )
             test_tcp mc.recolic.net 25565 || return $?
-            ;;
-        push-httpdb-agent )
-            return $RETURN_CODE_SERVICE_CLOSE
-            local r="$RANDOM"
-            test_icmp git.recolic.net &&
-            curl -s "https://git.recolic.net/_r_testing/set/_status_test|$r" &&
-            local result=$(curl -s "https://git.recolic.net/_r_testing/get/_status_test") || return $?
-            [[ $r = $result ]]
-            return $?
             ;;
         ddns-home )
             # NO icmp required.
