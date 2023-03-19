@@ -15,7 +15,7 @@ tests = [
         ('./do.bash home-http', 'Home NAS & DDNS & HTTP'), 
         ('./do.bash domain2ip', 'Domain to IP'), 
         ('./do.bash comm100', 'COMM100 Subscription'), 
-        ]
+][::-1]
 # ('./do.bash ddns-home', 'DDNS home'), 
 
 test_interval = 20 * 60 # 20min
