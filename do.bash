@@ -50,7 +50,7 @@ function do_test () {
             test_tcp proxy-cdn.recolic.net 30999 || return $?
             ;;
         comm100 )
-            curl -s -L https://www.comm100.pw/ | grep Comm100 || return $?
+            curl -s -L https://www.rdev.sbs/ | grep Comm100 || return $?
             ;;
         www )
             test_icmp recolic.net &&
