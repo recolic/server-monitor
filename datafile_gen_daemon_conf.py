@@ -3,7 +3,7 @@
 tests = [
         ('./do.bash frp-sg', '[proxy.] Reverse Proxy (Singapore FRP)'), 
         ('./do.bash frp-cdn', '[proxy-cdn.] Reverse Proxy (Seattle FRP)'), 
-        ('./do.bash www', '[www.] Main Website & Blog'), 
+        ('./do.bash www', '[www.] Website & Blog & API'), 
         ('./do.bash mail', '[mail.] Mail Server'), 
         ('./do.bash git', '[git.] Git'), 
         ('./do.bash drive', '[drive.] NextCloud WebDrive'), 
@@ -14,7 +14,6 @@ tests = [
         ('./do.bash cc-dns', 'recolic.cc DNS'), 
         ('./do.bash home-http', 'Home NAS & DDNS & HTTP'), 
         ('./do.bash domain2ip', 'Domain to IP'), 
-        ('./do.bash comm100', 'COMM100 Subscription'), 
 ][::-1]
 # ('./do.bash ddns-home', 'DDNS home'), 
 

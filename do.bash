@@ -49,9 +49,6 @@ function do_test () {
         frp-cdn )
             test_tcp proxy-cdn.recolic.net 30999 || return $?
             ;;
-        comm100 )
-            curl -s -L https://www.rdev.sbs/ | grep Comm100 || return $?
-            ;;
         www )
             test_icmp recolic.net &&
             test_icmp www.recolic.net &&
@@ -95,6 +92,7 @@ function do_test () {
             test_tcp base.ddns1.recolic.net 22 | grep -a SSH || return $?
             ;;
         dl )
+            return $RETURN_CODE_SERVICE_CLOSE
             test_icmp dl.recolic.net &&
             curl -s -L https://dl.recolic.net/ | grep 'Home page is not provided for this download site' || return $?
             ;;
@@ -131,6 +129,7 @@ function do_test_twice () {
     return $?
 }
     
+# only used for local testing, might outdated
 if [[ "$1" = all ]]; then
     do_test_twice rproxy &&
     do_test_twice drive &&
